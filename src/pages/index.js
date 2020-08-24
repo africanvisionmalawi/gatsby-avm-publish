@@ -48,12 +48,6 @@ const IndexPage = () => {
         This should take upto 5 mins to complete, but shouldn't be no more than
         3 mins.
       </p>
-
-      <h2>The image below shows the current status of the site/build</h2>
-      <img
-        src="https://api.netlify.com/api/v1/badges/f667e17e-f666-46bf-b25f-216f8720eea2/deploy-status?trigger_title=triggered+by+Admin"
-        alt="build status"
-      />
     </Layout>
   )
 }
