@@ -37,9 +37,9 @@ const IndexPage = () => {
         event_type: process.env.GATSBY_EVENT_TYPE,
       }),
     }
-    // fetch(url, options)
-    //   .then(res => res.json())
-    //   .catch(error => console.log(error))
+    fetch(url, options)
+      .then(res => res.json())
+      .catch(error => console.log(error))
   }
 
   return (
