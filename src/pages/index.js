@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { styled } from "linaria/react"
 import dayjs from "dayjs"
 import advancedFormat from "dayjs/plugin/advancedFormat"
@@ -8,12 +8,20 @@ import SEO from "../components/seo"
 
 dayjs.extend(advancedFormat)
 
+
+
 const IndexPage = () => {
   const [disableBtn, setDisableBtn] = useState(false)
   const [lastUpdated, setLastUpdated] = useState("")
 
   const btnText = "Publish site"
   const btnTextUpdating = "Site updating"
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDisableBtn(false)
+    }, 30000)
+  },[disableBtn])
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -29,9 +37,9 @@ const IndexPage = () => {
         event_type: process.env.GATSBY_EVENT_TYPE,
       }),
     }
-    fetch(url, options)
-      .then(res => res.json())
-      .catch(error => console.log(error))
+    // fetch(url, options)
+    //   .then(res => res.json())
+    //   .catch(error => console.log(error))
   }
 
   return (
@@ -48,6 +56,8 @@ const IndexPage = () => {
         This should take upto 5 mins to complete, but shouldn't be no more than
         3 mins.
       </p>
+      <p>This button will show the current state of the latest build, but you may need to refresh the page to see the latest update.</p>
+      <img src="https://api.netlify.com/api/v1/badges/f667e17e-f666-46bf-b25f-216f8720eea2/deploy-status" alt="Netlify Status" />
     </Layout>
   )
 }
