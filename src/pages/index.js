@@ -45,7 +45,8 @@ const IndexPage = () => {
   }
 
   const handleClick = e => {
-    setImageRefresh("Loading again...")
+    const refreshCount = Math.random()
+    setImageRefresh("Loading again..." + refreshCount)
   }
 
   return (
@@ -63,7 +64,7 @@ const IndexPage = () => {
         3 mins.
       </p>
       <p>This button will show the current state of the latest build, click on it to refresh the button and show the latest state.</p>
-      <BuildBtn><img src="https://api.netlify.com/api/v1/badges/f667e17e-f666-46bf-b25f-216f8720eea2/deploy-status" alt={imageRefresh} onClick={e => handleClick(e)} /></BuildBtn>
+      <BuildBtn name={imageRefresh}><img src={`https://api.netlify.com/api/v1/badges/f667e17e-f666-46bf-b25f-216f8720eea2/deploy-status?a=${imageRefresh}`} alt={imageRefresh} onClick={e => handleClick(e)} /></BuildBtn>
     </Layout>
   )
 }
