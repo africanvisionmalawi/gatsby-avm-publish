@@ -13,6 +13,7 @@ dayjs.extend(advancedFormat)
 const IndexPage = () => {
   const [disableBtn, setDisableBtn] = useState(false)
   const [lastUpdated, setLastUpdated] = useState("")
+  const [imageRefresh, setImageRefresh] = useState("")  
 
   const btnText = "Publish site"
   const btnTextUpdating = "Site updating"
@@ -26,6 +27,7 @@ const IndexPage = () => {
   const handleSubmit = e => {
     e.preventDefault()
     setDisableBtn(true)
+    setImageRefresh("Loading...")
     const url = process.env.GATSBY_API_URL
     const options = {
       method: "POST",
@@ -42,6 +44,10 @@ const IndexPage = () => {
       .catch(error => console.log(error))
   }
 
+  const handleClick = e => {
+    setImageRefresh("Loading again...")
+  }
+
   return (
     <Layout>
       <SEO title="Home" />
@@ -56,8 +62,8 @@ const IndexPage = () => {
         This should take upto 5 mins to complete, but shouldn't be no more than
         3 mins.
       </p>
-      <p>This button will show the current state of the latest build, but you may need to refresh the page to see the latest update.</p>
-      <img src="https://api.netlify.com/api/v1/badges/f667e17e-f666-46bf-b25f-216f8720eea2/deploy-status" alt="Netlify Status" />
+      <p>This button will show the current state of the latest build, click on it to refresh the button and show the latest state.</p>
+      <BuildBtn><img src="https://api.netlify.com/api/v1/badges/f667e17e-f666-46bf-b25f-216f8720eea2/deploy-status" alt={imageRefresh} onClick={e => handleClick(e)} /></BuildBtn>
     </Layout>
   )
 }
@@ -79,6 +85,11 @@ const Btn = styled.button`
     color: #7a7d82;
     cursor: default;
   }
+`
+
+const BuildBtn = styled.span`
+  cursor: pointer;
+  display: block;
 `
 
 export default IndexPage
