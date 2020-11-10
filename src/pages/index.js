@@ -71,9 +71,10 @@ const IndexPage = () => {
 
 const Btn = styled.button`
   appearance: none;
+  background: #007a70;
   border: 1px solid #007a70;
   border-radius: 6px;
-  color: #007a70;
+  color: #fff;
   cursor: pointer;
   display: block;
   font-weight: bold;
