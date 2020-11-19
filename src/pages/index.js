@@ -8,12 +8,10 @@ import SEO from "../components/seo"
 
 dayjs.extend(advancedFormat)
 
-
-
 const IndexPage = () => {
   const [disableBtn, setDisableBtn] = useState(false)
   const [lastUpdated, setLastUpdated] = useState("")
-  const [imageRefresh, setImageRefresh] = useState("")  
+  const [imageRefresh, setImageRefresh] = useState("")
 
   const btnText = "Publish site"
   const btnTextUpdating = "Site updating"
@@ -22,7 +20,7 @@ const IndexPage = () => {
     const timer = setTimeout(() => {
       setDisableBtn(false)
     }, 10000)
-  },[disableBtn])
+  }, [disableBtn])
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -63,8 +61,16 @@ const IndexPage = () => {
         This should take upto 5 mins to complete, but shouldn't be no more than
         3 mins.
       </p>
-      <p>This button will show the current state of the latest build, click on it to refresh the button and show the latest state.</p>
-      <BuildBtn><img src={`https://api.netlify.com/api/v1/badges/f667e17e-f666-46bf-b25f-216f8720eea2/deploy-status?a=${imageRefresh}`} onClick={e => handleClick(e)} /></BuildBtn>
+      <p>
+        This button will show the current state of the latest build, click on it
+        to refresh the button and show the latest state.
+      </p>
+      <BuildBtn>
+        <img
+          src={`https://api.netlify.com/api/v1/badges/f6e1ff52-323f-4c7f-b2a7-c1980c9d7051/deploy-status?a=${imageRefresh}`}
+          onClick={e => handleClick(e)}
+        />
+      </BuildBtn>
     </Layout>
   )
 }
