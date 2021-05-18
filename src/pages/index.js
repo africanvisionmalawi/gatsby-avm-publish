@@ -18,6 +18,10 @@ const IndexPage = () => {
   const btnPreviewText = "Restart preview"
   const btnPreviewTextUpdating = "Preview updating"
 
+  const previewTimer = setTimeout(() => {
+    setDisabledPreviewBtn(false)
+  }, 10000)
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setDisableBtn(false)
@@ -44,9 +48,9 @@ const IndexPage = () => {
       .catch(error => console.log(error))
   }
 
-  const handlePreviewSubmit = e => {
+  const handlePreviewSubmit = async e => {
     e.preventDefault()
-    // setDisabledPreviewBtn(true)
+    setDisabledPreviewBtn(true)
     const url = process.env.GATSBY_CLOUD_PREVIEW_BUILD
 
     const options = {
@@ -62,6 +66,8 @@ const IndexPage = () => {
     fetch(url, options)
       .then(res => res.json())
       .catch(error => console.log(error))
+
+    await previewTimer
   }
 
   const handleClick = e => {
